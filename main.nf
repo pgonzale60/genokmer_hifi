@@ -4,7 +4,11 @@ nextflow.enable.dsl=2
 
 params.kmers = '21,31'
 params.reads = 'data/*fasta'
+<<<<<<< HEAD
 params.outdir = 'results'
+=======
+params.outdir = results
+>>>>>>> master
 
 
 kmers = Channel.of(params.kmers.split(','))
@@ -50,7 +54,10 @@ process genomescope {
       path("${sample}")
     script:
       """
+<<<<<<< HEAD
       mkdir -p ${sample}
+=======
+>>>>>>> master
       Rscript /kmer_wd/genomescope.R $histo $kmer 150 ${sample} \
       | tail -n +2 \
       | sed \'s/Model converged //; s/ /\\n/g\' > ${sample}/${sample}_gmodel.txt
