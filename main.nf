@@ -50,10 +50,11 @@ process genomescope {
       path("${sample}")
     script:
       """
-      mkdir -p ${sample}
-      Rscript /kmer_wd/genomescope.R $histo $kmer 150 ${sample} \
+      mkdir -p ${sample}_${kmer}
+      Rscript /kmer_wd/genomescope.R $histo $kmer 150 ${sample}_${kmer} \
       | tail -n +2 \
-      | sed \'s/Model converged //; s/ /\\n/g\' > ${sample}/${sample}_gmodel.txt
+      | sed \'s/Model converged //; s/ /\\n/g\' > \
+      ${sample}_${kmer}/${sample}_${kmer}_gmodel.txt
       """
 }
 
